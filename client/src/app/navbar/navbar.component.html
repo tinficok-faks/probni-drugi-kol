@@ -1,20 +1,37 @@
-<nav class="navbar navbar-expand-md navbar-light py-3 text-secondary"  style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-md navbar-light py-3 text-secondary" style="background-color: #e3f2fd;">
 	<div class="container">
-		<a class="navbar-brand" [routerLink]="'.'"><h3 class="mb-0"><strong>Auth App</strong></h3></a>
+		<a class="navbar-brand" [routerLink]="'.'">
+			<h3 class="mb-0"><strong>Auth App</strong></h3>
+		</a>
 
-		<!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
 		<button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
 
-		<!-- Step 2: Add the ngbCollapse directive to the element below. -->
 		<div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
 			<ul class="navbar-nav ms-auto">
-				<li class="nav-item">
-					<!-- Step 4: Close the menu when a link is clicked. -->
-					<a class="nav-link" [routerLink]="'/sign-in'">Sign In</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'/sign-up'">Sign Up</a>
-				</li>
+
+				<!-- Ako NEMA tokena: Sign In / Sign Up -->
+				<ng-container *ngIf="!payload; else loggedIn">
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="'/sign-in'" routerLinkActive="active-link"
+							[routerLinkActiveOptions]="{ exact: true }" (click)="isMenuCollapsed = true">
+							Sign In
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" [routerLink]="'/sign-up'" routerLinkActive="active-link"
+							[routerLinkActiveOptions]="{ exact: true }" (click)="isMenuCollapsed = true">
+							Sign Up
+						</a>
+					</li>
+				</ng-container>
+
+				<!-- Ako IMA token: Hello username -->
+				<ng-template #loggedIn>
+					<li class="nav-item">
+						<span class="nav-link">Hello {{ username }}</span>
+					</li>
+				</ng-template>
+
 			</ul>
 		</div>
 	</div>

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService, SignInCredentials } from "../auth.service";
 import { Router } from "@angular/router";
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -19,7 +20,7 @@ export class SignInComponent {
     this.errorMsg = '';
     this.authService.sign_in(this.form).subscribe({
       next: (res) => {
-        console.log('SIGN IN OK:', res);
+        console.log(res);
         this.router.navigate(['/profile']);
       },
       error: (err) => {

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService, SignUpCredentials } from "../auth.service";
 import { Router } from "@angular/router";
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
@@ -19,7 +20,7 @@ export class SignUpComponent {
     this.errorMsg = '';
     this.authService.sign_up(this.form).subscribe({
       next: (res) => {
-        console.log('SIGN UP OK:', res);
+        console.log(res);
         this.router.navigate(['/profile']);
       },
       error: (err) => {
