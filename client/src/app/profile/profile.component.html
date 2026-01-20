@@ -1,12 +1,14 @@
 <div class="card p-3" style="min-width: 520px;">
-    <div class="card-body">
-      <h3 class="card-title mb-2">My profile</h3>
-      <p class="card-text mb-0">
-        <strong>Username: </strong> joe
-      </p>
-      <p class="card-text mb">
-        <strong>Email: </strong> joe&#64;gmail.com
-      </p>
-        <button class="btn btn-warning">Logout</button>            
-    </div>
+  <div class="card-body">
+    <h3 class="card-title mb-2">My profile</h3>
+
+    <p class="card-text mb-0">
+      <strong>Username: </strong> {{ payload?.username }}
+    </p>
+    <p class="card-text mb">
+      <strong>Email: </strong> {{ payload?.email }}
+    </p>
+
+    <button class="btn btn-warning" (click)="onLogout()">Logout</button>
+  </div>
 </div>

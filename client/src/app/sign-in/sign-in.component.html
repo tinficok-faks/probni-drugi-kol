@@ -4,20 +4,29 @@
     <p class="card-text">
       If you are already registered, please enter your credentials
     </p>
-    
 
-    <form>
+    <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
+    <form (ngSubmit)="onSubmit()">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="email" placeholder="Email address">
+        <input type="email" class="form-control" id="email" placeholder="Email address" name="email"
+          [(ngModel)]="form.email" required>
         <label for="email">Email address</label>
       </div>
+
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="password" placeholder="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+          [(ngModel)]="form.password" required>
         <label for="password">Password</label>
       </div>
+
       <div class="d-flex justify-content-end">
-        <button type="reset" class="w-25 rounded-pill btn btn-secondary me-2">Sign Up</button>
-        <button type="submit" class="w-25 rounded-pill btn btn-warning">Sign In</button>
+        <button type="button" (click)="goToSignUp()" class="w-25 rounded-pill btn btn-secondary me-2">
+          Sign Up
+        </button>
+        <button type="submit" class="w-25 rounded-pill btn btn-warning">
+          Sign In
+        </button>
       </div>
     </form>
   </div>
