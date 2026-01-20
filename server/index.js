@@ -85,6 +85,7 @@ app.post("/api/sign-up", async (req, res) => {
     app.use(express.urlencoded({ extended: false }));
 
     const db = await connect_to_db();
+    const users = db.collection("users");
 
     app.listen(port, () => console.log(`Express.js is listening at port ${port}`));
 
